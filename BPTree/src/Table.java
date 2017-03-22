@@ -681,17 +681,55 @@ public class Table
     /************************************************************************************
      * Save this table in a file.
      */
-    public void save ()
-    {
-        try {
-            ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream (name + EXT));
-            oos.writeObject (this);
-            oos.close ();
-        } catch (IOException ex) {
-            out.println ("save: IO Exception");
-            ex.printStackTrace ();
-        } // try
-    } // save
+    public void save () {
+    	   //if (listType != ListType.FILELIST) {
+    	     try {
+
+    	            String content = this.getContent();
+    	            File file = new File(name+EXT);
+    	            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+    	            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+    	            bufferedWriter.write(content);
+    	            bufferedWriter.close();
+    	     } catch (IOException ex) {
+    	         out.println ("save: IO Exception");
+    	         ex.printStackTrace ();
+    	     } // try
+    	   }
+    	 // save
+    
+    public String getContent(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append ("\n Table " + name);
+        stringBuilder.append("\n");
+        stringBuilder.append ("|-");
+        for (int i = 0; i < attribute.length; i++) stringBuilder.append ("---------");
+        stringBuilder.append ("-|\n");
+        stringBuilder.append ("| ");
+        for (String a : attribute) {
+            stringBuilder.append (" ");
+            stringBuilder.append(a);
+        }
+        stringBuilder.append (" |\n");
+        stringBuilder.append ("|-");
+        for (int i = 0; i < attribute.length; i++)
+            stringBuilder.append ("---------");
+        stringBuilder.append ("-|\n");
+        for (Comparable [] tup : tuples) {
+            stringBuilder.append ("| ");
+            for (Comparable attr : tup) {
+                stringBuilder.append("  ");
+                stringBuilder.append(attr);
+            }
+            stringBuilder.append (" |\n");
+        } // for
+        stringBuilder.append ("|-");
+        for (int i = 0; i < attribute.length; i++)
+            stringBuilder.append ("---------");
+        stringBuilder.append ("-|");
+
+        return stringBuilder.toString();
+    }
 
     //----------------------------------------------------------------------------------
     // Private Methods
