@@ -113,8 +113,7 @@ class MovieDB
         
         for(int i = 0;i <= 50;i++)
         {
-        	int randSalary = rand.nextInt() + 10000;
-        	Comparable [] execX = { i, "Exec_" + i, "Hollywood", (float)randSalary };
+        	Comparable [] execX = { i, "Exec_" + i, "Hollywood", 150000.00 };
         	movieExec.insert(execX);
         }
         out.println();
@@ -215,7 +214,7 @@ class MovieDB
          */
         out.println ();
         out.println("TEST: JOIN CASE B");
-        Table join_case_b = movie.join (cinema);
+        Table join_case_b = movie.join (movieExec);
         join_case_b.print ();
         join_case_b.save ();
         
@@ -225,7 +224,7 @@ class MovieDB
          * common attributes will give a cross product of the two tables
          */
         out.println();
-        out.println("TEST: JOIN CASE A");
+        out.println("TEST: JOIN CASE C");
         out.println("Cross Product: movie and movieStar have no common attributes");
         Table join_case_c = movie.join(movieStar);
         join_case_c.print();
