@@ -155,6 +155,7 @@ class MovieDB
          * Select case a. Select without any where clause, i.e., no attributes specified in the method
          */
         out.println();
+        out.println("TEST: SELECT CASE A");
         Table select_case_a = movie.select();
         select_case_a.print();
         select_case_a.save (); 
@@ -163,6 +164,7 @@ class MovieDB
          * Select case b. Select with where clause – a predicate string 
          */
         out.println ();
+        out.println("TEST: SELECT CASE B");
         Table select_case_b = movie.select (t -> t[movie.col("title")].equals ("Film_22"));
         select_case_b.print ();
         select_case_b.save ();
@@ -172,6 +174,7 @@ class MovieDB
          * Select case c Select with key given as attribute
          */
         out.println ();
+        out.println("TEST: SELECT CASE C");
         Table select_case_c = movieStar.select (new KeyType ("StarName_25"));
         select_case_c.print ();
         select_case_c.save ();
@@ -181,6 +184,7 @@ class MovieDB
          * Project case a: Project on a key column
          */
         out.println ();
+        out.println("TEST: PROJECT CASE A");
         Table project_case_a = movieStar.project ("name");
         project_case_a.print ();
         project_case_a.save ();
@@ -190,6 +194,7 @@ class MovieDB
          * if duplicates are present in the table
          */
         out.println();
+        out.println("TEST: PROJECT CASE B");
         Table project_case_b = movie.project ("genre");
         project_case_b.print ();
         project_case_b.save ();
@@ -199,6 +204,7 @@ class MovieDB
          * Join case a: Equi join – giving table column names as attributes
          */
         out.println ();
+        out.println("TEST: JOIN CASE A");
         Table join_case_a = movie.join ("studioName", "name", studio);
         join_case_a.print ();
         join_case_a.save ();
@@ -208,6 +214,7 @@ class MovieDB
          *  Join case b - natural join
          */
         out.println ();
+        out.println("TEST: JOIN CASE B");
         Table join_case_b = movie.join (cinema);
         join_case_b.print ();
         join_case_b.save ();
@@ -217,6 +224,8 @@ class MovieDB
          * Join case c - Cross product – natural join on two tables without any 
          * common attributes will give a cross product of the two tables
          */
+        out.println();
+        out.println("TEST: JOIN CASE A");
         out.println("Cross Product: movie and movieStar have no common attributes");
         Table join_case_c = movie.join(movieStar);
         join_case_c.print();
@@ -226,6 +235,7 @@ class MovieDB
          * union case a: simple union operation
          */
         out.println ();
+        out.println("TEST: UNION TEST CASE");
         Table union_case_a = movie.union (cinema);
         union_case_a.print ();
         union_case_a.save ();
@@ -235,6 +245,7 @@ class MovieDB
          * minus case a: simple minus operation
          */
         out.println ();
+        out.println("TEST: MINUS TEST CASE");
         Table minus_case_a = movie.minus (cinema);
         minus_case_a.print ();
         minus_case_a.save ();
