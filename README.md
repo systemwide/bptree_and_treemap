@@ -1,4 +1,8 @@
 *Team Potato Project 3*
+Zach Saucier
+Layton Hayes
+Jeff Cardinal
+Benjamin Rotolo
 
 There are two directories for our submission:
 BPTree and
