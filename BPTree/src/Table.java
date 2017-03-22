@@ -141,7 +141,7 @@ public class Table
         String [] newKey    = (Arrays.asList (attrs).containsAll (Arrays.asList (key))) ? key : attrs;
 
         List <Comparable []> rows = new ArrayList <> ();
-        
+        Set <List <Comparable>>  uniques = new HashSet <>();
       //Our code
         int index;
         for (Comparable[] tuple : this.tuples) {
@@ -155,7 +155,10 @@ public class Table
                     }
                 }
             }
-            rows.add(addition);
+            if(!uniques.contains(Arrays.asList(addition))){
+                rows.add(addition);
+                uniques.add(Arrays.asList(addition));
+            }
         }
 
         return new Table (name + count++, attrs, colDomain, newKey, rows);
